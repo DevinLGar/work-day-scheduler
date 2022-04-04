@@ -21,4 +21,23 @@ function timeBlockColor() {
     })
 }
 
+$(".btn").on("click", function() {
+    var time = $(this).siblings(".hour").text();
+    var errand = $(this).siblings(".col-10").val();
+
+    localStorage.setItem(time, errand);
+});
+
+function loadSched() {
+    $(".hour").each(function() {
+        var currentHour = $(this).text();
+        var errand = localStorage.getItem(currentHour);
+
+        if(errand !== null) {
+            $(this).siblings(".col-10").val(errand);
+        }
+    })
+}
+
 timeBlockColor();
+loadSched();
